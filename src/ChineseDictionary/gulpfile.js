@@ -1,4 +1,4 @@
-﻿/// <binding Clean='clean' />
+﻿/// <binding BeforeBuild='copy, min' Clean='clean' />
 "use strict";
 
 var gulp = require("gulp"),
@@ -6,6 +6,25 @@ var gulp = require("gulp"),
     concat = require("gulp-concat"),
     cssmin = require("gulp-cssmin"),
     uglify = require("gulp-uglify");
+
+var libPaths = [
+    "./node_modules/core-js/client/shim.min.js",
+    "./node_modules/zone.js/dist/zone.js",
+    "./node_modules/reflect-metadata/Reflect.js",
+    "./node_modules/systemjs/dist/system.src.js",
+    "./node_modules/@angular/**/*",
+    "./node_modules/angular2-in-memory-web-api/**/*",
+    "./node_modules/rxjs/**/*",
+    "./node_modules/primeng/**/*",
+    "./node_modules/primeui/**/*",
+    "./node_modules/angular2localization/**/*"
+];
+
+gulp.task('copy:lib', function () {
+    gulp.src(libPaths, {
+        base: './node_modules'
+    }).pipe(gulp.dest('./wwwroot/lib'));
+});
 
 var webroot = "./wwwroot/";
 
@@ -42,4 +61,5 @@ gulp.task("min:css", function () {
         .pipe(gulp.dest("."));
 });
 
+gulp.task('copy', ['copy:lib']);
 gulp.task("min", ["min:js", "min:css"]);

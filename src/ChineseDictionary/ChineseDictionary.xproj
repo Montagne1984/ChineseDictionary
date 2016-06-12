@@ -6,7 +6,7 @@
   </PropertyGroup>
   <Import Project="$(VSToolsPath)\DotNet\Microsoft.DotNet.Props" Condition="'$(VSToolsPath)' != ''" />
   <PropertyGroup Label="Globals">
-    <ProjectGuid>cd659d8c-ad79-453a-9e64-f8ffc2ddf291</ProjectGuid>
+    <ProjectGuid>d596f1d0-4d45-401a-b2b5-c87edb9f9d4c</ProjectGuid>
     <RootNamespace>ChineseDictionary</RootNamespace>
     <BaseIntermediateOutputPath Condition="'$(BaseIntermediateOutputPath)'=='' ">.\obj</BaseIntermediateOutputPath>
     <OutputPath Condition="'$(OutputPath)'=='' ">.\bin\</OutputPath>

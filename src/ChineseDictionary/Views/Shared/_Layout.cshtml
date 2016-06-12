@@ -1,18 +1,27 @@
-﻿<!DOCTYPE html>
+﻿@using Microsoft.AspNetCore.Mvc.Localization
+
+@inject IViewLocalizer Localizer
+
+<!DOCTYPE html>
 <html>
 <head>
+    <base href="/" />
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - ChineseDictionary</title>
+    <title>@ViewData["Title"] - @Localizer["ChineseDictionary"]</title>
 
     <environment names="Development">
-        <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
+        <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css"/>
+        <link rel="stylesheet" type="text/css" href="~/lib/primeui/themes/delta/theme.css" />
+        <link rel="stylesheet" type="text/css" href="~/lib/primeui/primeui-ng-all.css" />
         <link rel="stylesheet" href="~/css/site.css" />
     </environment>
     <environment names="Staging,Production">
         <link rel="stylesheet" href="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.6/css/bootstrap.min.css"
               asp-fallback-href="~/lib/bootstrap/dist/css/bootstrap.min.css"
               asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute" />
+        <link rel="stylesheet" type="text/css" href="~/lib/primeui/themes/delta/theme.css" />
+        <link rel="stylesheet" type="text/css" href="~/lib/primeui/primeui-ng-all.css" />
         <link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />
     </environment>
     @Html.ApplicationInsightsJavaScript(TelemetryConfiguration)
@@ -50,6 +59,22 @@
     <environment names="Development">
         <script src="~/lib/jquery/dist/jquery.js"></script>
         <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
+        <script src="https://use.fontawesome.com/02b196efa6.js"></script>
+        
+        <!-- 1. Load libraries -->
+        <!-- Polyfill(s) for older browsers -->
+        <script src="~/lib/core-js/client/shim.min.js"></script>
+        <script src="~/lib/zone.js/dist/zone.js"></script>
+        <script src="~/lib/reflect-metadata/Reflect.js"></script>
+        <script src="~/lib/systemjs/dist/system.src.js"></script>
+        <script src="~/lib/angular2localization/bundles/angular2localization.js"></script>
+
+        <!-- 2. Configure SystemJS -->
+        <script src="~/js/systemjs.config.js"></script>
+        <script>
+            System.import('app').catch(function(err) { console.error(err); });
+        </script>
+
         <script src="~/js/site.js" asp-append-version="true"></script>
     </environment>
     <environment names="Staging,Production">
@@ -60,6 +85,21 @@
         <script src="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.6/bootstrap.min.js"
                 asp-fallback-src="~/lib/bootstrap/dist/js/bootstrap.min.js"
                 asp-fallback-test="window.jQuery && window.jQuery.fn && window.jQuery.fn.modal">
+        </script>
+        <script src="https://use.fontawesome.com/02b196efa6.js"></script>
+
+        <!-- 1. Load libraries -->
+        <!-- Polyfill(s) for older browsers -->
+        <script src="~/lib/core-js/client/shim.min.js"></script>
+        <script src="~/lib/zone.js/dist/zone.js"></script>
+        <script src="~/lib/reflect-metadata/Reflect.js"></script>
+        <script src="~/lib/systemjs/dist/system.src.js"></script>
+        <script src="~/lib/angular2localization/bundles/angular2localization.js"></script>
+
+        <!-- 2. Configure SystemJS -->
+        <script src="~/js/systemjs.config.js"></script>
+        <script>
+            System.import('app').catch(function(err) { console.error(err); });
         </script>
         <script src="~/js/site.min.js" asp-append-version="true"></script>
     </environment>
