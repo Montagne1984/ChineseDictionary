@@ -11,13 +11,13 @@ import {IObjectService} from "../services/object.service"
     pipes: [TranslatePipe]
 })
 
-export abstract class ObjectComponent extends Locale implements OnInit {
+export abstract class ObjectComponent<T> extends Locale implements OnInit {
 
     displayDialog: boolean;
 
-    item: Object = new Object();
+    item = this.new();
 
-    selectedItem: Object;
+    selectedItem: T;
 
     newItem: boolean;
 
@@ -46,7 +46,7 @@ export abstract class ObjectComponent extends Locale implements OnInit {
 
     showDialogToAdd() {
         this.newItem = true;
-        this.item = new Object();
+        this.item = this.new();
         this.displayDialog = true;
     }
 
@@ -72,7 +72,15 @@ export abstract class ObjectComponent extends Locale implements OnInit {
         this.displayDialog = true;
     }
 
-    abstract cloneItem(i: Object): Object;
+    cloneItem(i: T): T {
+        let item = this.new();
+        for (let prop in i) {
+            item[prop] = i[prop];
+        }
+        return item;
+    }
+
+    abstract new(): T;
 
     findSelectedItemIndex(): number {
         return this.items.indexOf(this.selectedItem);

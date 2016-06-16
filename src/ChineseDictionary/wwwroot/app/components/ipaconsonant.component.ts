@@ -12,18 +12,12 @@ import {LocaleService, LocalizationService, TranslatePipe} from 'angular2localiz
     providers: [IPAConsonantService],
     pipes: [TranslatePipe]
 })
-export class IPAConsonantComponent extends ObjectComponent {
-    //item: IPAConsonant = new IPAConsonant();
-
+export class IPAConsonantComponent extends ObjectComponent<IPAConsonant> {
     constructor(locale: LocaleService, localization: LocalizationService, objectService: IPAConsonantService) {
         super(locale, localization, objectService);
     }
 
-    cloneItem(i: IPAConsonant): IPAConsonant {
-        let item = new IPAConsonant();
-        for (let prop in i) {
-            item[prop] = i[prop];
-        }
-        return item;
+    new(): IPAConsonant {
+        return new IPAConsonant();
     }
 }

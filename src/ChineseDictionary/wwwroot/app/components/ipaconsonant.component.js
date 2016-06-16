@@ -21,16 +21,18 @@ var ipaconsonant_service_1 = require("../services/ipaconsonant.service");
 var angular2localization_1 = require('angular2localization/angular2localization');
 var IPAConsonantComponent = (function (_super) {
     __extends(IPAConsonantComponent, _super);
-    //item: IPAConsonant = new IPAConsonant();
     function IPAConsonantComponent(locale, localization, objectService) {
         _super.call(this, locale, localization, objectService);
     }
-    IPAConsonantComponent.prototype.cloneItem = function (i) {
-        var item = new ipaconsonant_1.IPAConsonant();
-        for (var prop in i) {
-            item[prop] = i[prop];
-        }
-        return item;
+    //cloneItem(i: IPAConsonant): IPAConsonant {
+    //    let item = new IPAConsonant();
+    //    for (let prop in i) {
+    //        item[prop] = i[prop];
+    //    }
+    //    return item;
+    //}
+    IPAConsonantComponent.prototype.new = function () {
+        return new ipaconsonant_1.IPAConsonant();
     };
     IPAConsonantComponent = __decorate([
         core_1.Component({

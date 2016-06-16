@@ -22,7 +22,7 @@ var ObjectComponent = (function (_super) {
         this.locale = locale;
         this.localization = localization;
         this.objectService = objectService;
-        this.item = new Object();
+        this.item = this.new();
         // Adds a new language (ISO 639 two-letter or three-letter code).
         this.locale.addLanguage("zh");
         // Add a new language here.
@@ -38,7 +38,7 @@ var ObjectComponent = (function (_super) {
     };
     ObjectComponent.prototype.showDialogToAdd = function () {
         this.newItem = true;
-        this.item = new Object();
+        this.item = this.new();
         this.displayDialog = true;
     };
     ObjectComponent.prototype.save = function () {
@@ -58,6 +58,13 @@ var ObjectComponent = (function (_super) {
         this.newItem = false;
         this.item = this.cloneItem(event.data);
         this.displayDialog = true;
+    };
+    ObjectComponent.prototype.cloneItem = function (i) {
+        var item = this.new();
+        for (var prop in i) {
+            item[prop] = i[prop];
+        }
+        return item;
     };
     ObjectComponent.prototype.findSelectedItemIndex = function () {
         return this.items.indexOf(this.selectedItem);
