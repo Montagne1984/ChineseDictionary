@@ -14,43 +14,35 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require("@angular/core");
+var ipaconsonant_1 = require("../domain/ipaconsonant");
 var object_component_1 = require("./object.component");
 var primeng_1 = require("primeng/primeng");
-var ipaconsonant_1 = require("../domain/ipaconsonant");
+var ipaconsonant_service_1 = require("../services/ipaconsonant.service");
 var angular2localization_1 = require('angular2localization/angular2localization');
 var IPAConsonantComponent = (function (_super) {
     __extends(IPAConsonantComponent, _super);
-    function IPAConsonantComponent(locale, localization) {
-        _super.call(this, locale, localization);
-        this.locale = locale;
-        this.localization = localization;
-        this.item = new ipaconsonant_1.IPAConsonant();
+    //item: IPAConsonant = new IPAConsonant();
+    function IPAConsonantComponent(locale, localization, objectService) {
+        _super.call(this, locale, localization, objectService);
     }
+    IPAConsonantComponent.prototype.cloneItem = function (i) {
+        var item = new ipaconsonant_1.IPAConsonant();
+        for (var prop in i) {
+            item[prop] = i[prop];
+        }
+        return item;
+    };
     IPAConsonantComponent = __decorate([
         core_1.Component({
             selector: "ipaconsonant",
             templateUrl: "app/components/ipaconsonant.html",
             directives: [primeng_1.Button, primeng_1.Dialog, primeng_1.DataTable, primeng_1.Column, primeng_1.Header, primeng_1.Footer, primeng_1.InputText],
-            //providers: [IPAConsonantService]
-            providers: [
-                angular2localization_1.LocaleService,
-                angular2localization_1.LocalizationService
-            ],
+            providers: [ipaconsonant_service_1.IPAConsonantService],
             pipes: [angular2localization_1.TranslatePipe]
-        }),
-        core_1.Injectable(), 
-        __metadata('design:paramtypes', [angular2localization_1.LocaleService, angular2localization_1.LocalizationService])
+        }), 
+        __metadata('design:paramtypes', [angular2localization_1.LocaleService, angular2localization_1.LocalizationService, ipaconsonant_service_1.IPAConsonantService])
     ], IPAConsonantComponent);
     return IPAConsonantComponent;
 }(object_component_1.ObjectComponent));
 exports.IPAConsonantComponent = IPAConsonantComponent;
-var IPAConsonantService = (function () {
-    function IPAConsonantService() {
-    }
-    IPAConsonantService.prototype.get = function () {
-        return [];
-    };
-    return IPAConsonantService;
-}());
-exports.IPAConsonantService = IPAConsonantService;
 //# sourceMappingURL=ipaconsonant.component.js.map

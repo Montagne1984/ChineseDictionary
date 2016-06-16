@@ -14,13 +14,14 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require("@angular/core");
-var angular2localization_1 = require('angular2localization/angular2localization');
+var angular2localization_1 = require("angular2localization/angular2localization");
 var ObjectComponent = (function (_super) {
     __extends(ObjectComponent, _super);
-    function ObjectComponent(locale, localization) {
+    function ObjectComponent(locale, localization, objectService) {
         _super.call(this, locale, localization);
         this.locale = locale;
         this.localization = localization;
+        this.objectService = objectService;
         this.item = new Object();
         // Adds a new language (ISO 639 two-letter or three-letter code).
         this.locale.addLanguage("zh");
@@ -33,8 +34,7 @@ var ObjectComponent = (function (_super) {
         this.localization.updateTranslation(); // Need to update the translation.
     }
     ObjectComponent.prototype.ngOnInit = function () {
-        //this.objectService.get().then(items => this.items = items);
-        this.items = [];
+        this.items = this.objectService.get();
     };
     ObjectComponent.prototype.showDialogToAdd = function () {
         this.newItem = true;
@@ -59,13 +59,6 @@ var ObjectComponent = (function (_super) {
         this.item = this.cloneItem(event.data);
         this.displayDialog = true;
     };
-    ObjectComponent.prototype.cloneItem = function (i) {
-        var item = new Object();
-        //for (let prop in i) {
-        //    item[prop] = i[prop];
-        //}
-        return item;
-    };
     ObjectComponent.prototype.findSelectedItemIndex = function () {
         return this.items.indexOf(this.selectedItem);
     };
@@ -77,7 +70,7 @@ var ObjectComponent = (function (_super) {
             ],
             pipes: [angular2localization_1.TranslatePipe]
         }), 
-        __metadata('design:paramtypes', [angular2localization_1.LocaleService, angular2localization_1.LocalizationService])
+        __metadata('design:paramtypes', [angular2localization_1.LocaleService, angular2localization_1.LocalizationService, Object])
     ], ObjectComponent);
     return ObjectComponent;
 }(angular2localization_1.Locale));
