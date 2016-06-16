@@ -1,7 +1,7 @@
 ﻿import {Component, OnInit} from "@angular/core";
 import {Button, Dialog, DataTable, Column, Header, Footer, InputText} from "primeng/primeng";
 import {Locale, LocaleService, LocalizationService, TranslatePipe} from "angular2localization/angular2localization";
-import {IObjectService} from "../services/object.service"
+import {ObjectService} from "../services/object.service"
 
 @Component({
     providers: [
@@ -21,9 +21,9 @@ export abstract class ObjectComponent<T> extends Locale implements OnInit {
 
     newItem: boolean;
 
-    items: Object[];
+    items: T[];
 
-    constructor(public locale: LocaleService, public localization: LocalizationService, protected objectService: IObjectService) {
+    constructor(public locale: LocaleService, public localization: LocalizationService, protected objectService: ObjectService<T>) {
         super(locale, localization);
 
         // Adds a new language (ISO 639 two-letter or three-letter code).
@@ -41,7 +41,7 @@ export abstract class ObjectComponent<T> extends Locale implements OnInit {
     }
 
     ngOnInit() {
-        this.items = this.objectService.get();
+        this.objectService.get().then(items => this.items = items);
     }
 
     showDialogToAdd() {

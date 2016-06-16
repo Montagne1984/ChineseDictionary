@@ -15,6 +15,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require("@angular/core");
 var angular2localization_1 = require("angular2localization/angular2localization");
+var object_service_1 = require("../services/object.service");
 var ObjectComponent = (function (_super) {
     __extends(ObjectComponent, _super);
     function ObjectComponent(locale, localization, objectService) {
@@ -34,7 +35,8 @@ var ObjectComponent = (function (_super) {
         this.localization.updateTranslation(); // Need to update the translation.
     }
     ObjectComponent.prototype.ngOnInit = function () {
-        this.items = this.objectService.get();
+        var _this = this;
+        this.objectService.get().then(function (items) { return _this.items = items; });
     };
     ObjectComponent.prototype.showDialogToAdd = function () {
         this.newItem = true;
@@ -77,7 +79,7 @@ var ObjectComponent = (function (_super) {
             ],
             pipes: [angular2localization_1.TranslatePipe]
         }), 
-        __metadata('design:paramtypes', [angular2localization_1.LocaleService, angular2localization_1.LocalizationService, Object])
+        __metadata('design:paramtypes', [angular2localization_1.LocaleService, angular2localization_1.LocalizationService, object_service_1.ObjectService])
     ], ObjectComponent);
     return ObjectComponent;
 }(angular2localization_1.Locale));

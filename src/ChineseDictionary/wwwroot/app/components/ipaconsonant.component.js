@@ -24,13 +24,6 @@ var IPAConsonantComponent = (function (_super) {
     function IPAConsonantComponent(locale, localization, objectService) {
         _super.call(this, locale, localization, objectService);
     }
-    //cloneItem(i: IPAConsonant): IPAConsonant {
-    //    let item = new IPAConsonant();
-    //    for (let prop in i) {
-    //        item[prop] = i[prop];
-    //    }
-    //    return item;
-    //}
     IPAConsonantComponent.prototype.new = function () {
         return new ipaconsonant_1.IPAConsonant();
     };
