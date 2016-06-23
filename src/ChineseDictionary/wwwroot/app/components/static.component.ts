@@ -1,10 +1,10 @@
 ﻿import {Component, OnInit} from "@angular/core";
-import {InputText} from 'primeng/primeng';
+import {Button, InputText} from 'primeng/primeng';
 import {Locale, LocaleService, LocalizationService, TranslatePipe} from "angular2localization/angular2localization";
 
 @Component({
     selector: "static",
-    directives: [InputText],
+    directives: [Button, InputText],
     templateUrl: "app/components/static.html",
     providers: [
         LocaleService,

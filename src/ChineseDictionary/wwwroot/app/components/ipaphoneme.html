@@ -5,7 +5,7 @@
         <button type="button" pButton icon="fa-plus" style="float: right" (click)="showDialogToAdd()" label="{{ 'ADD'| translate:lang }}"></button>
     </div>
     <p-dataTable [value]="items" selectionMode="single" [(selection)]="selectedItem" (onRowSelect)="onRowSelect($event)" [rows]="10" [paginator]="true" [rowsPerPageOptions]="[5,10,20]" [responsive]="true" [globalFilter]="gb" resizableColumns="true">
-        <header>{{ "IPACONSONANT" | translate:lang }}</header>
+        <header>{{ title | translate:lang }}</header>
         <p-column field="symbol" header="{{ 'SYMBOL'| translate:lang }}" [sortable]="true" [filter]="true" filterMatchMode="contains"></p-column>
     </p-dataTable>
 

@@ -15,31 +15,31 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require('@angular/core');
 var http_1 = require('@angular/http');
-var ipaconsonant_1 = require('../domain/ipaconsonant');
+var ipavowel_1 = require('../domain/ipavowel');
 var object_service_1 = require('./object.service');
-var IPAConsonantService = (function (_super) {
-    __extends(IPAConsonantService, _super);
-    function IPAConsonantService(http) {
+var IPAVowelService = (function (_super) {
+    __extends(IPAVowelService, _super);
+    function IPAVowelService(http) {
         _super.call(this, http);
-        this.url = 'api/ipaconsonants/'; // URL to web api
+        this.url = 'api/ipavowels/'; // URL to web api
     }
-    IPAConsonantService.prototype.extractArray = function (res) {
+    IPAVowelService.prototype.extractArray = function (res) {
         var items = [];
-        res.json().forEach(function (item) { return items.push(new ipaconsonant_1.IPAConsonant(item.Id, item.Symbol)); });
+        res.json().forEach(function (item) { return items.push(new ipavowel_1.IPAVowel(item.Id, item.Symbol)); });
         return items;
     };
-    IPAConsonantService.prototype.extractData = function (res) {
+    IPAVowelService.prototype.extractData = function (res) {
         if (res.status === 204) {
             return null;
         }
         var item = res.json();
-        return new ipaconsonant_1.IPAConsonant(item.Id, item.Symbol);
+        return new ipavowel_1.IPAVowel(item.Id, item.Symbol);
     };
-    IPAConsonantService = __decorate([
+    IPAVowelService = __decorate([
         core_1.Injectable(), 
         __metadata('design:paramtypes', [http_1.Http])
-    ], IPAConsonantService);
-    return IPAConsonantService;
+    ], IPAVowelService);
+    return IPAVowelService;
 }(object_service_1.ObjectService));
-exports.IPAConsonantService = IPAConsonantService;
-//# sourceMappingURL=ipaconsonant.service.js.map
+exports.IPAVowelService = IPAVowelService;
+//# sourceMappingURL=ipavowel.service.js.map

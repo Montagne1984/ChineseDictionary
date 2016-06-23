@@ -35,7 +35,7 @@ var StaticComponent = (function (_super) {
     StaticComponent = __decorate([
         core_1.Component({
             selector: "static",
-            directives: [primeng_1.InputText],
+            directives: [primeng_1.Button, primeng_1.InputText],
             templateUrl: "app/components/static.html",
             providers: [
                 angular2localization_1.LocaleService,

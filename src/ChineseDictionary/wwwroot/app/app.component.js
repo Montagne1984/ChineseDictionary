@@ -19,6 +19,7 @@ var angular2localization_1 = require('angular2localization/angular2localization'
 var static_component_1 = require("./components/static.component");
 //import {ConsonantComponent} from "./components/consonant.component";
 var ipaconsonant_component_1 = require("./components/ipaconsonant.component");
+var ipavowel_component_1 = require("./components/ipavowel.component");
 var AppComponent = (function (_super) {
     __extends(AppComponent, _super);
     function AppComponent(locale, localization) {
@@ -62,7 +63,7 @@ var AppComponent = (function (_super) {
             {
                 path: '/ipavowel',
                 name: 'IPAVowel',
-                component: ipaconsonant_component_1.IPAConsonantComponent
+                component: ipavowel_component_1.IPAVowelComponent
             },
             {
                 path: '/consonant',

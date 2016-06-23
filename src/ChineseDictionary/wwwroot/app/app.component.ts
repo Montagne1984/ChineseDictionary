@@ -4,6 +4,7 @@ import {Locale, LocaleService, LocalizationService, TranslatePipe} from 'angular
 import {StaticComponent} from "./components/static.component";
 //import {ConsonantComponent} from "./components/consonant.component";
 import {IPAConsonantComponent} from "./components/ipaconsonant.component";
+import {IPAVowelComponent} from "./components/ipavowel.component";
 
 declare var System: any;
 
@@ -33,7 +34,7 @@ declare var System: any;
     {
         path: '/ipavowel',
         name: 'IPAVowel',
-        component: IPAConsonantComponent
+        component: IPAVowelComponent
     },
     {
         path: '/consonant',

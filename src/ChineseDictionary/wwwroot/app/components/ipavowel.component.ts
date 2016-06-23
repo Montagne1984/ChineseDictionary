@@ -1,24 +1,24 @@
 ﻿import {Component} from "@angular/core";
-import {IPAConsonant} from "../domain/ipaconsonant";
+import {IPAVowel} from "../domain/ipavowel";
 import {ObjectComponent} from "./object.component";
 import {Button, Dialog, DataTable, Column, Header, Footer, InputText} from "primeng/primeng";
-import {IPAConsonantService} from "../services/ipaconsonant.service"
+import {IPAVowelService} from "../services/ipavowel.service"
 import {LocaleService, LocalizationService, TranslatePipe} from 'angular2localization/angular2localization';
 
 @Component({
-    selector: "ipaconsonant",
+    selector: "ipavowel",
     templateUrl: "app/components/ipaphoneme.html",
     directives: [Button, Dialog, DataTable, Column, Header, Footer, InputText],
-    providers: [IPAConsonantService],
+    providers: [IPAVowelService],
     pipes: [TranslatePipe]
 })
-export class IPAConsonantComponent extends ObjectComponent<IPAConsonant> {
-    title = "IPACONSONANT";
+export class IPAVowelComponent extends ObjectComponent<IPAVowel> {
+    title = "IPAVOWEL";
 
-    constructor(locale: LocaleService, localization: LocalizationService, objectService: IPAConsonantService) {
+    constructor(locale: LocaleService, localization: LocalizationService, objectService: IPAVowelService) {
         super(locale, localization, objectService);
     }
-    new(): IPAConsonant {
-        return new IPAConsonant();
+    new(): IPAVowel {
+        return new IPAVowel();
     }
 }

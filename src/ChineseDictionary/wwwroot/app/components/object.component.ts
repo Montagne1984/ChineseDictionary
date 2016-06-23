@@ -25,6 +25,8 @@ export abstract class ObjectComponent<T> extends Locale implements OnInit {
 
     errorMessage: string;
 
+    title: string;
+
     constructor(public locale: LocaleService, public localization: LocalizationService, protected objectService: ObjectService<T>) {
         super(locale, localization);
 
