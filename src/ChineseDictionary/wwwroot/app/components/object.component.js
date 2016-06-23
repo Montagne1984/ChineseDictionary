@@ -36,7 +36,8 @@ var ObjectComponent = (function (_super) {
     }
     ObjectComponent.prototype.ngOnInit = function () {
         var _this = this;
-        this.objectService.get().then(function (items) { return _this.items = items; });
+        this.objectService.get()
+            .subscribe(function (items) { return _this.items = items; }, function (error) { return _this.errorMessage = error; });
     };
     ObjectComponent.prototype.showDialogToAdd = function () {
         this.newItem = true;
@@ -44,17 +45,29 @@ var ObjectComponent = (function (_super) {
         this.displayDialog = true;
     };
     ObjectComponent.prototype.save = function () {
-        if (this.newItem)
-            this.items.push(this.item);
-        else
-            this.items[this.findSelectedItemIndex()] = this.item;
+        var _this = this;
+        if (this.newItem) {
+            this.objectService.post(this.item)
+                .subscribe(function (item) { return _this.items.push(item); }, function (error) { return _this.errorMessage = error; });
+        }
+        else {
+            var item_1 = this.cloneItem(this.item);
+            this.objectService.put(item_1)
+                .subscribe(function (i) {
+                _this.items[_this.findSelectedItemIndex()] = item_1;
+            });
+        }
         this.item = null;
         this.displayDialog = false;
     };
     ObjectComponent.prototype.delete = function () {
-        this.items.splice(this.findSelectedItemIndex(), 1);
-        this.item = null;
-        this.displayDialog = false;
+        var _this = this;
+        this.objectService.delete(this.item)
+            .subscribe(function (item) {
+            _this.items.splice(_this.findSelectedItemIndex(), 1);
+            _this.item = null;
+            _this.displayDialog = false;
+        });
     };
     ObjectComponent.prototype.onRowSelect = function (event) {
         this.newItem = false;

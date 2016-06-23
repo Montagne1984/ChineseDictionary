@@ -12,6 +12,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using ChineseDictionary.Data;
 using ChineseDictionary.Models;
+using ChineseDictionary.Models.EntityModels;
 using ChineseDictionary.Services;
 using Microsoft.AspNetCore.Localization;
 using Microsoft.AspNetCore.Mvc.Razor;
@@ -122,6 +123,8 @@ namespace ChineseDictionary
                 // UI strings that we have localized.
                 SupportedUICultures = supportedCultures
             });
+
+            IdentityData.Initialize(app.ApplicationServices);
         }
     }
 }

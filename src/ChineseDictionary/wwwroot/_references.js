@@ -10,6 +10,7 @@
 /// <reference path="app/domain/ipavowel.js" />
 /// <reference path="app/domain/phoneme.js" />
 /// <reference path="app/main.js" />
+/// <reference path="app/rxjs-operators.js" />
 /// <reference path="app/services/ipaconsonant.service.js" />
 /// <reference path="app/services/object.service.js" />
 /// <reference path="js/site.js" />

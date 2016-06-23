@@ -8,7 +8,7 @@
     <base href="/" />
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - @Localizer["ChineseDictionary"]</title>
+    <title>@ViewData["Title"] - @Localizer["吴典"]</title>
 
     <environment names="Development">
         <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css"/>
@@ -36,13 +36,13 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a asp-controller="Home" asp-action="Index" class="navbar-brand">ChineseDictionary</a>
+                <a asp-controller="Home" asp-action="Index" class="navbar-brand">@Localizer["吴典"]</a>
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li><a asp-controller="Home" asp-action="Index">Home</a></li>
-                    <li><a asp-controller="Home" asp-action="About">About</a></li>
-                    <li><a asp-controller="Home" asp-action="Contact">Contact</a></li>
+                    <li><a asp-controller="Home" asp-action="Index">@Localizer["首页"]</a></li>
+                    <li><a asp-controller="Home" asp-action="About">@Localizer["关于我们"]</a></li>
+                    <li><a asp-controller="Home" asp-action="Contact">@Localizer["联系我们"]</a></li>
                 </ul>
                 @await Html.PartialAsync("_LoginPartial")
             </div>
@@ -52,7 +52,7 @@
         @RenderBody()
         <hr />
         <footer>
-            <p>&copy; 2016 - ChineseDictionary</p>
+            <p>&copy; 2016 - @Localizer["吴典"]</p>
         </footer>
     </div>
 

@@ -1,3 +1,3 @@
 ﻿export class Phoneme {
-    constructor(public id: number, public symbol: string) { }
+    constructor(public id?: number, public symbol?: string) { }
 }

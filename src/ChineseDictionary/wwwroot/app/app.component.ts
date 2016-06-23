@@ -25,14 +25,34 @@ declare var System: any;
         component: StaticComponent,
         useAsDefault: true
     },
-    //{
-    //    path: '/consonant',
-    //    name: 'Consonant',
-    //    component: ConsonantComponent
-    //},
     {
         path: '/ipaconsonant',
         name: 'IPAConsonant',
+        component: IPAConsonantComponent
+    },
+    {
+        path: '/ipavowel',
+        name: 'IPAVowel',
+        component: IPAConsonantComponent
+    },
+    {
+        path: '/consonant',
+        name: 'Consonant',
+        component: IPAConsonantComponent
+    },
+    {
+        path: '/vowel',
+        name: 'Vowel',
+        component: IPAConsonantComponent
+    },
+    {
+        path: '/tonetype',
+        name: 'ToneType',
+        component: IPAConsonantComponent
+    },
+    {
+        path: '/tone',
+        name: 'Tone',
         component: IPAConsonantComponent
     }
     //new AsyncRoute({

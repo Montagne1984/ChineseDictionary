@@ -1,18 +1,21 @@
-﻿<ul class="nav nav-inline m-t-1">
-    <li class="nav-item">
-        <a class="nav-link" href="consonant">Consonant</a>
+﻿<ul class="nav nav-pills">
+    <li>
+        <a [routerLink]="['IPAConsonant']">{{ 'IPACONSONANT'| translate:lang }}</a>
     </li>
-    <li class="nav-item">
-        <a [routerLink]="['IPAConsonant']">IPAConsonant</a>
+    <li>
+        <a [routerLink]="['IPAVowel']">{{ 'IPAVOWEL'| translate:lang }}</a>
     </li>
-    <li class="nav-item">
-        <a class="nav-link" href="edit/vowel">Vowel</a>
+    <li>
+        <a [routerLink]="['Consonant']">{{ 'CONSONANT'| translate:lang }}</a>
     </li>
-    <li class="nav-item">
-        <a class="nav-link" href="edit/tonetype">Tone Type</a>
+    <li>
+        <a [routerLink]="['Vowel']">{{ 'VOWEL'| translate:lang }}</a>
     </li>
-    <li class="nav-item">
-        <a class="nav-link" href="edit/tone">Tone</a>
+    <li>
+        <a [routerLink]="['ToneType']">{{ 'TONETYPE'| translate:lang }}</a>
+    </li>
+    <li>
+        <a [routerLink]="['Tone']">{{ 'TONE'| translate:lang }}</a>
     </li>
 </ul>
 <router-outlet></router-outlet>

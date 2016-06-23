@@ -16,7 +16,6 @@ export class IPAConsonantComponent extends ObjectComponent<IPAConsonant> {
     constructor(locale: LocaleService, localization: LocalizationService, objectService: IPAConsonantService) {
         super(locale, localization, objectService);
     }
-
     new(): IPAConsonant {
         return new IPAConsonant();
     }

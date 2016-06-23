@@ -3,7 +3,13 @@
   "ITEMDETAILS": "详细信息",
   "DELETE": "删除",
   "SAVE": "保存",
-  "GLOBALFILTER": "查找",
+  "GLOBALFILTER": "全局查找",
   "SYMBOL": "符号",
-  "IPACONSONANT": "国际音标声母"
+  "IPACONSONANT": "国际音标声母",
+  "IPAVOWEL": "国际音标韵母",
+  "CONSONANT": "声母",
+  "VOWEL": "韵母",
+  "TONETYPE": "声调类型",
+  "TONE": "调值",
+  "SEARCH": "搜索"
 }

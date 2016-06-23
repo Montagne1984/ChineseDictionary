@@ -7,10 +7,8 @@ var __extends = (this && this.__extends) || function (d, b) {
 var phoneme_1 = require("./phoneme");
 var IPAConsonant = (function (_super) {
     __extends(IPAConsonant, _super);
-    function IPAConsonant(id, symbol) {
-        _super.call(this, id, symbol);
-        this.id = id;
-        this.symbol = symbol;
+    function IPAConsonant() {
+        _super.apply(this, arguments);
     }
     return IPAConsonant;
 }(phoneme_1.Phoneme));

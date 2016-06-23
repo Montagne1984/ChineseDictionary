@@ -54,14 +54,34 @@ var AppComponent = (function (_super) {
                 component: static_component_1.StaticComponent,
                 useAsDefault: true
             },
-            //{
-            //    path: '/consonant',
-            //    name: 'Consonant',
-            //    component: ConsonantComponent
-            //},
             {
                 path: '/ipaconsonant',
                 name: 'IPAConsonant',
+                component: ipaconsonant_component_1.IPAConsonantComponent
+            },
+            {
+                path: '/ipavowel',
+                name: 'IPAVowel',
+                component: ipaconsonant_component_1.IPAConsonantComponent
+            },
+            {
+                path: '/consonant',
+                name: 'Consonant',
+                component: ipaconsonant_component_1.IPAConsonantComponent
+            },
+            {
+                path: '/vowel',
+                name: 'Vowel',
+                component: ipaconsonant_component_1.IPAConsonantComponent
+            },
+            {
+                path: '/tonetype',
+                name: 'ToneType',
+                component: ipaconsonant_component_1.IPAConsonantComponent
+            },
+            {
+                path: '/tone',
+                name: 'Tone',
                 component: ipaconsonant_component_1.IPAConsonantComponent
             }
         ]), 

@@ -15,23 +15,50 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require('@angular/core');
 var http_1 = require('@angular/http');
-require('rxjs/add/operator/toPromise');
+var ipaconsonant_1 = require('../domain/ipaconsonant');
 var object_service_1 = require('./object.service');
+require('../rxjs-operators');
 var IPAConsonantService = (function (_super) {
     __extends(IPAConsonantService, _super);
     function IPAConsonantService(http) {
         _super.call(this);
         this.http = http;
-        this.url = 'app/heroes'; // URL to web api
+        this.url = 'api/ipaconsonants/'; // URL to web api
     }
     IPAConsonantService.prototype.get = function () {
-        //let i = new IPAConsonant();
-        //i.symbol = "b";
-        //return [i];
         return this.http.get(this.url)
-            .toPromise()
-            .then(function (response) { return response.json().data; })
+            .map(this.extractArray)
             .catch(this.handleError);
+    };
+    IPAConsonantService.prototype.post = function (item) {
+        var body = JSON.stringify(item);
+        return this.http.post(this.url, body, this.options)
+            .map(this.extractData)
+            .catch(this.handleError);
+    };
+    IPAConsonantService.prototype.put = function (item) {
+        var body = JSON.stringify(item);
+        this.options.url = this.url + item.id;
+        return this.http.put(this.url + item.id, body, this.options)
+            .map(this.extractData)
+            .catch(this.handleError);
+    };
+    IPAConsonantService.prototype.delete = function (item) {
+        return this.http.delete(this.url + item.id, this.options)
+            .map(this.extractData)
+            .catch(this.handleError);
+    };
+    IPAConsonantService.prototype.extractArray = function (res) {
+        var items = [];
+        res.json().forEach(function (item) { return items.push(new ipaconsonant_1.IPAConsonant(item.Id, item.Symbol)); });
+        return items;
+    };
+    IPAConsonantService.prototype.extractData = function (res) {
+        if (res.status === 204) {
+            return null;
+        }
+        var item = res.json();
+        return new ipaconsonant_1.IPAConsonant(item.Id, item.Symbol);
     };
     IPAConsonantService = __decorate([
         core_1.Injectable(), 

@@ -23,6 +23,8 @@ export abstract class ObjectComponent<T> extends Locale implements OnInit {
 
     items: T[];
 
+    errorMessage: string;
+
     constructor(public locale: LocaleService, public localization: LocalizationService, protected objectService: ObjectService<T>) {
         super(locale, localization);
 
@@ -41,7 +43,8 @@ export abstract class ObjectComponent<T> extends Locale implements OnInit {
     }
 
     ngOnInit() {
-        this.objectService.get().then(items => this.items = items);
+        this.objectService.get()
+            .subscribe(items => this.items = items, error => this.errorMessage = error);
     }
 
     showDialogToAdd() {
@@ -51,19 +54,29 @@ export abstract class ObjectComponent<T> extends Locale implements OnInit {
     }
 
     save() {
-        if (this.newItem)
-            this.items.push(this.item);
-        else
-            this.items[this.findSelectedItemIndex()] = this.item;
+        if (this.newItem) {
+            this.objectService.post(this.item)
+                .subscribe(item => this.items.push(item), error => this.errorMessage = error);
+
+        } else {
+            let item = this.cloneItem(this.item);
+            this.objectService.put(item)
+                .subscribe(i => {
+                    this.items[this.findSelectedItemIndex()] = item;
+                });
+        }
 
         this.item = null;
         this.displayDialog = false;
     }
 
     delete() {
-        this.items.splice(this.findSelectedItemIndex(), 1);
-        this.item = null;
-        this.displayDialog = false;
+        this.objectService.delete(this.item)
+            .subscribe(item => {
+                this.items.splice(this.findSelectedItemIndex(), 1);
+                this.item = null;
+                this.displayDialog = false;
+            });
     }
 
     onRowSelect(event) {
