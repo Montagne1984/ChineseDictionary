@@ -1,4 +1,4 @@
-﻿import {Phoneme} from "./phoneme"
+﻿import {IPAPhoneme} from "./ipaphoneme"
 
-export class IPAVowel extends Phoneme {
+export class IPAVowel extends IPAPhoneme {
 }

@@ -1,72 +1,44 @@
-//import {Component, OnInit} from "angular2/core";
-//import {Button, Dialog, DataTable, Column, Header, Footer, InputText} from 'primeng/primeng';
-//@Component({
-//    selector: "consonant",
-//    templateUrl: "app/components/consonant.html",
-//    directives: [Button, Dialog, DataTable, Column, Header, Footer, InputText]
-//})
-//export class ConsonantComponent implements OnInit {
-//    displayDialog: boolean;
-//    consonant: Consonant = new Consonant();
-//    selectedConsonant: Consonant;
-//    newConsonant: boolean;
-//    consonants: Consonant[];
-//    constructor() { }
-//    ngOnInit() {
-//        //this.consonantService.getConsonantsSmall().then(consonants => this.consonants = consonants);
-//        this.consonants = [
-//            { vin: "a", year: "b", brand: "c", color: "d" },
-//            { vin: "a", year: "b", brand: "c", color: "d" },
-//            { vin: "a", year: "b", brand: "c", color: "d" },
-//            { vin: "a", year: "b", brand: "c", color: "d" },
-//            { vin: "a", year: "b", brand: "c", color: "d" },
-//            { vin: "a", year: "b", brand: "c", color: "d" },
-//            { vin: "a", year: "b", brand: "c", color: "d" },
-//            { vin: "a", year: "b", brand: "c", color: "d" },
-//            { vin: "a", year: "b", brand: "c", color: "d" },
-//            { vin: "a", year: "b", brand: "c", color: "d" },
-//            { vin: "a", year: "b", brand: "c", color: "d" },
-//            { vin: "a", year: "b", brand: "c", color: "d" },
-//            { vin: "a", year: "b", brand: "c", color: "d" },
-//            { vin: "a", year: "b", brand: "c", color: "d" },
-//            { vin: "a", year: "b", brand: "c", color: "d" }
-//        ];
-//    }
-//    showDialogToAdd() {
-//        this.newConsonant = true;
-//        this.consonant = new Consonant();
-//        this.displayDialog = true;
-//    }
-//    save() {
-//        if (this.newConsonant)
-//            this.consonants.push(this.consonant);
-//        else
-//            this.consonants[this.findSelectedConsonantIndex()] = this.consonant;
-//        this.consonant = null;
-//        this.displayDialog = false;
-//    }
-//    delete() {
-//        this.consonants.splice(this.findSelectedConsonantIndex(), 1);
-//        this.consonant = null;
-//        this.displayDialog = false;
-//    }
-//    onRowSelect(event) {
-//        this.newConsonant = false;
-//        this.consonant = this.cloneConsonant(event.data);
-//        this.displayDialog = true;
-//    }
-//    cloneConsonant(c: Consonant): Consonant {
-//        let consonant = new Consonant();
-//        for (let prop in c) {
-//            consonant[prop] = c[prop];
-//        }
-//        return consonant;
-//    }
-//    findSelectedConsonantIndex(): number {
-//        return this.consonants.indexOf(this.selectedConsonant);
-//    }
-//}
-//class Consonant {
-//    constructor(public vin?, public year?, public brand?, public color?) { }
-//}
+"use strict";
+var __extends = (this && this.__extends) || function (d, b) {
+    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
+    function __() { this.constructor = d; }
+    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+};
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+var core_1 = require("@angular/core");
+var consonant_1 = require("../domain/consonant");
+var object_component_1 = require("./object.component");
+var primeng_1 = require("primeng/primeng");
+var consonant_service_1 = require("../services/consonant.service");
+var angular2localization_1 = require('angular2localization/angular2localization');
+var ConsonantComponent = (function (_super) {
+    __extends(ConsonantComponent, _super);
+    function ConsonantComponent(locale, localization, objectService) {
+        _super.call(this, locale, localization, objectService);
+        this.title = "CONSONANT";
+    }
+    ConsonantComponent.prototype.new = function () {
+        return new consonant_1.Consonant();
+    };
+    ConsonantComponent = __decorate([
+        core_1.Component({
+            selector: "d-phoneme",
+            templateUrl: "app/components/phoneme.html",
+            directives: [primeng_1.Button, primeng_1.Dialog, primeng_1.DataTable, primeng_1.Column, primeng_1.Header, primeng_1.Footer, primeng_1.InputText],
+            providers: [consonant_service_1.ConsonantService],
+            pipes: [angular2localization_1.TranslatePipe]
+        }), 
+        __metadata('design:paramtypes', [angular2localization_1.LocaleService, angular2localization_1.LocalizationService, consonant_service_1.ConsonantService])
+    ], ConsonantComponent);
+    return ConsonantComponent;
+}(object_component_1.ObjectComponent));
+exports.ConsonantComponent = ConsonantComponent;
 //# sourceMappingURL=consonant.component.js.map

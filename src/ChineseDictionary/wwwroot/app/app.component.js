@@ -17,9 +17,12 @@ var core_1 = require('@angular/core');
 var router_deprecated_1 = require('@angular/router-deprecated');
 var angular2localization_1 = require('angular2localization/angular2localization');
 var static_component_1 = require("./components/static.component");
-//import {ConsonantComponent} from "./components/consonant.component";
 var ipaconsonant_component_1 = require("./components/ipaconsonant.component");
 var ipavowel_component_1 = require("./components/ipavowel.component");
+var area_component_1 = require("./components/area.component");
+var consonant_component_1 = require("./components/consonant.component");
+var tonetype_component_1 = require("./components/tonetype.component");
+var tone_component_1 = require("./components/tone.component");
 var AppComponent = (function (_super) {
     __extends(AppComponent, _super);
     function AppComponent(locale, localization) {
@@ -66,24 +69,29 @@ var AppComponent = (function (_super) {
                 component: ipavowel_component_1.IPAVowelComponent
             },
             {
+                path: '/area',
+                name: 'Area',
+                component: area_component_1.AreaComponent
+            },
+            {
                 path: '/consonant',
                 name: 'Consonant',
-                component: ipaconsonant_component_1.IPAConsonantComponent
+                component: consonant_component_1.ConsonantComponent
             },
             {
                 path: '/vowel',
                 name: 'Vowel',
-                component: ipaconsonant_component_1.IPAConsonantComponent
+                component: ipavowel_component_1.IPAVowelComponent
             },
             {
                 path: '/tonetype',
                 name: 'ToneType',
-                component: ipaconsonant_component_1.IPAConsonantComponent
+                component: tonetype_component_1.ToneTypeComponent
             },
             {
                 path: '/tone',
                 name: 'Tone',
-                component: ipaconsonant_component_1.IPAConsonantComponent
+                component: tone_component_1.ToneComponent
             }
         ]), 
         __metadata('design:paramtypes', [angular2localization_1.LocaleService, angular2localization_1.LocalizationService])

@@ -6,7 +6,7 @@ import {IPAConsonantService} from "../services/ipaconsonant.service"
 import {LocaleService, LocalizationService, TranslatePipe} from 'angular2localization/angular2localization';
 
 @Component({
-    selector: "ipaconsonant",
+    selector: "d-ipaPhoneme",
     templateUrl: "app/components/ipaphoneme.html",
     directives: [Button, Dialog, DataTable, Column, Header, Footer, InputText],
     providers: [IPAConsonantService],

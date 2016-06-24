@@ -7,9 +7,12 @@
   "SYMBOL": "符号",
   "IPACONSONANT": "国际音标声母",
   "IPAVOWEL": "国际音标韵母",
+  "AREA": "地区",
   "CONSONANT": "声母",
   "VOWEL": "韵母",
   "TONETYPE": "声调类型",
-  "TONE": "调值",
-  "SEARCH": "搜索"
+  "TONE": "声调",
+  "SEARCH": "搜索",
+  "NAME": "名称",
+  "VALUE": "调值"
 }

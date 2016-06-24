@@ -30,7 +30,7 @@ var IPAConsonantComponent = (function (_super) {
     };
     IPAConsonantComponent = __decorate([
         core_1.Component({
-            selector: "ipaconsonant",
+            selector: "d-ipaPhoneme",
             templateUrl: "app/components/ipaphoneme.html",
             directives: [primeng_1.Button, primeng_1.Dialog, primeng_1.DataTable, primeng_1.Column, primeng_1.Header, primeng_1.Footer, primeng_1.InputText],
             providers: [ipaconsonant_service_1.IPAConsonantService],

@@ -1,5 +1,5 @@
 ﻿import { Injectable } from '@angular/core';
-import { Headers, Http, Response, RequestOptions  } from '@angular/http';
+import { Http, Response } from '@angular/http';
 import {IPAConsonant} from '../domain/ipaconsonant';
 import {ObjectService} from './object.service';
 

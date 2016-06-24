@@ -4,13 +4,13 @@ var __extends = (this && this.__extends) || function (d, b) {
     function __() { this.constructor = d; }
     d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 };
-var phoneme_1 = require("./phoneme");
+var ipaphoneme_1 = require("./ipaphoneme");
 var IPAConsonant = (function (_super) {
     __extends(IPAConsonant, _super);
     function IPAConsonant() {
         _super.apply(this, arguments);
     }
     return IPAConsonant;
-}(phoneme_1.Phoneme));
+}(ipaphoneme_1.IPAPhoneme));
 exports.IPAConsonant = IPAConsonant;
 //# sourceMappingURL=ipaconsonant.js.map

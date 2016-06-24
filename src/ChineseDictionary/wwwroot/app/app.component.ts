@@ -2,11 +2,13 @@
 import { RouteConfig, ROUTER_DIRECTIVES, ROUTER_PROVIDERS } from '@angular/router-deprecated';
 import {Locale, LocaleService, LocalizationService, TranslatePipe} from 'angular2localization/angular2localization';
 import {StaticComponent} from "./components/static.component";
-//import {ConsonantComponent} from "./components/consonant.component";
 import {IPAConsonantComponent} from "./components/ipaconsonant.component";
 import {IPAVowelComponent} from "./components/ipavowel.component";
-
-declare var System: any;
+import {AreaComponent} from "./components/area.component";
+import {ConsonantComponent} from "./components/consonant.component";
+import {VowelComponent} from "./components/vowel.component";
+import {ToneTypeComponent} from "./components/tonetype.component";
+import {ToneComponent} from "./components/tone.component";
 
 @Component({
     selector: 'my-app',
@@ -37,24 +39,29 @@ declare var System: any;
         component: IPAVowelComponent
     },
     {
+        path: '/area',
+        name: 'Area',
+        component: AreaComponent
+    },
+    {
         path: '/consonant',
         name: 'Consonant',
-        component: IPAConsonantComponent
+        component: ConsonantComponent
     },
     {
         path: '/vowel',
         name: 'Vowel',
-        component: IPAConsonantComponent
+        component: IPAVowelComponent
     },
     {
         path: '/tonetype',
         name: 'ToneType',
-        component: IPAConsonantComponent
+        component: ToneTypeComponent
     },
     {
         path: '/tone',
         name: 'Tone',
-        component: IPAConsonantComponent
+        component: ToneComponent
     }
     //new AsyncRoute({
     //    path: "/sub",
