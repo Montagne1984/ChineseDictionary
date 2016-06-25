@@ -13,7 +13,7 @@ export class ToneService extends ObjectService<Tone> {
 
     protected extractArray(res: Response): Tone[] {
         let items = [];
-        res.json().forEach(item => items.push(new Tone(item.Id, item.Value, item.Area, item.ToneType)));
+        res.json().forEach(item => items.push(new Tone(item.Id, item.Value, item.AreaId, item.ToneTypeId)));
         return items;
     }
 
@@ -22,6 +22,6 @@ export class ToneService extends ObjectService<Tone> {
             return null;
         }
         let item = res.json();
-        return new Tone(item.Id, item.Value);
+        return new Tone(item.Id, item.Value, item.AreaId, item.ToneTypeId);
     }
 }

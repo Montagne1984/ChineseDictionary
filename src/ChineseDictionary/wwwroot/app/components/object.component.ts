@@ -1,4 +1,6 @@
 ﻿import {Component, OnInit} from "@angular/core";
+import { Observable } from "rxjs/Observable";
+import "rxjs/Rx";
 import {Button, Dialog, DataTable, Column, Header, Footer, InputText} from "primeng/primeng";
 import {Locale, LocaleService, LocalizationService, TranslatePipe} from "angular2localization/angular2localization";
 import {ObjectService} from "../services/object.service"
@@ -27,6 +29,8 @@ export abstract class ObjectComponent<T> extends Locale implements OnInit {
 
     title: string;
 
+    observableBatch: Observable<any>[];
+
     constructor(public locale: LocaleService, public localization: LocalizationService, protected objectService: ObjectService<T>) {
         super(locale, localization);
 
@@ -42,11 +46,12 @@ export abstract class ObjectComponent<T> extends Locale implements OnInit {
 
         this.localization.translationProvider("./resources/locale.");
         this.localization.updateTranslation(); // Need to update the translation.
+
+        this.observableBatch = [objectService.get()];
     }
 
     ngOnInit() {
-        this.objectService.get()
-            .subscribe(items => this.items = items, error => this.errorMessage = error);
+        Observable.forkJoin(this.observableBatch).subscribe(res => this.loadItems(res), error => this.errorMessage = error);
     }
 
     showDialogToAdd() {
@@ -63,9 +68,7 @@ export abstract class ObjectComponent<T> extends Locale implements OnInit {
         } else {
             let item = this.cloneItem(this.item);
             this.objectService.put(item)
-                .subscribe(i => {
-                    this.items[this.findSelectedItemIndex()] = item;
-                });
+                .subscribe(() => this.items[this.findSelectedItemIndex()] = this.setItem(item), error => this.errorMessage = error);
         }
 
         this.item = null;
@@ -74,11 +77,11 @@ export abstract class ObjectComponent<T> extends Locale implements OnInit {
 
     delete() {
         this.objectService.delete(this.item)
-            .subscribe(item => {
+            .subscribe(() => {
                 this.items.splice(this.findSelectedItemIndex(), 1);
                 this.item = null;
                 this.displayDialog = false;
-            });
+            }, error => this.errorMessage = error);
     }
 
     onRowSelect(event) {
@@ -99,5 +102,13 @@ export abstract class ObjectComponent<T> extends Locale implements OnInit {
 
     findSelectedItemIndex(): number {
         return this.items.indexOf(this.selectedItem);
+    }
+
+    loadItems(res) {
+        this.items = res[0];
+    }
+
+    setItem(item: T): T {
+        return item;
     }
 }

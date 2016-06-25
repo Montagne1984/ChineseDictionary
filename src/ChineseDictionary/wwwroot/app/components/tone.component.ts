@@ -1,4 +1,6 @@
 ﻿import {Component} from "@angular/core";
+import { Observable } from "rxjs/Observable";
+import "rxjs/Rx";
 import {Tone} from "../domain/tone";
 import {Area} from "../domain/area";
 import {ToneType} from "../domain/tonetype";
@@ -21,25 +23,36 @@ export class ToneComponent extends ObjectComponent<Tone> {
     areas: SelectItem[];
     toneTypes: SelectItem[];
 
-    constructor(locale: LocaleService, localization: LocalizationService, objectService: ToneService, protected areaService: AreaService, protected toneTypeService: ToneTypeService) {
+    constructor(locale: LocaleService, localization: LocalizationService, objectService: ToneService, areaService: AreaService, toneTypeService: ToneTypeService) {
         super(locale, localization, objectService);
-    }
-
-    ngOnInit() {
-        super.ngOnInit();
-        this.areas = [];
-        this.areaService.get()
-            .subscribe(
-                areas => areas.forEach(area => this.areas.push({ label: area.name, value: area.id })),
-                error => this.errorMessage = error);
-        this.toneTypes = [];
-        this.toneTypeService.get()
-            .subscribe(
-                toneTypes => toneTypes.forEach(toneType => this.toneTypes.push({ label: toneType.name, value: toneType.id })),
-                error => this.errorMessage = error);
+        this.observableBatch.push(areaService.get());
+        this.observableBatch.push(toneTypeService.get());
     }
 
     new(): Tone {
         return new Tone();
+    }
+
+    loadItems(res) {
+        super.loadItems(res);
+        let areas = res[1];
+        this.areas = areas.map(area => ({ label: area.name, value: area.id }));
+        let toneTypes = res[2];
+        this.toneTypes = toneTypes.map(toneType => ({ label: toneType.name, value: toneType.id }));
+        this.items.forEach(item => this.setItem(item));
+    }
+
+    setItem(item): Tone {
+        item.area = this.getArea(item.areaId);
+        item.toneType = this.getToneType(item.toneTypeId);
+        return item;
+    }
+
+    private getArea(id: number): Area {
+        return new Area(id, this.areas.filter(area => { return area.value === id; })[0].label);
+    }
+
+    private getToneType(id: number): ToneType {
+        return new ToneType(id, this.toneTypes.filter(toneType => { return toneType.value === id })[0].label);
     }
 }

@@ -14,6 +14,8 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require("@angular/core");
+var Observable_1 = require("rxjs/Observable");
+require("rxjs/Rx");
 var angular2localization_1 = require("angular2localization/angular2localization");
 var object_service_1 = require("../services/object.service");
 var ObjectComponent = (function (_super) {
@@ -33,11 +35,11 @@ var ObjectComponent = (function (_super) {
         this.locale.definePreferredCurrency("CNY");
         this.localization.translationProvider("./resources/locale.");
         this.localization.updateTranslation(); // Need to update the translation.
+        this.observableBatch = [objectService.get()];
     }
     ObjectComponent.prototype.ngOnInit = function () {
         var _this = this;
-        this.objectService.get()
-            .subscribe(function (items) { return _this.items = items; }, function (error) { return _this.errorMessage = error; });
+        Observable_1.Observable.forkJoin(this.observableBatch).subscribe(function (res) { return _this.loadItems(res); }, function (error) { return _this.errorMessage = error; });
     };
     ObjectComponent.prototype.showDialogToAdd = function () {
         this.newItem = true;
@@ -53,9 +55,7 @@ var ObjectComponent = (function (_super) {
         else {
             var item_1 = this.cloneItem(this.item);
             this.objectService.put(item_1)
-                .subscribe(function (i) {
-                _this.items[_this.findSelectedItemIndex()] = item_1;
-            });
+                .subscribe(function () { return _this.items[_this.findSelectedItemIndex()] = _this.setItem(item_1); }, function (error) { return _this.errorMessage = error; });
         }
         this.item = null;
         this.displayDialog = false;
@@ -63,11 +63,11 @@ var ObjectComponent = (function (_super) {
     ObjectComponent.prototype.delete = function () {
         var _this = this;
         this.objectService.delete(this.item)
-            .subscribe(function (item) {
+            .subscribe(function () {
             _this.items.splice(_this.findSelectedItemIndex(), 1);
             _this.item = null;
             _this.displayDialog = false;
-        });
+        }, function (error) { return _this.errorMessage = error; });
     };
     ObjectComponent.prototype.onRowSelect = function (event) {
         this.newItem = false;
@@ -83,6 +83,12 @@ var ObjectComponent = (function (_super) {
     };
     ObjectComponent.prototype.findSelectedItemIndex = function () {
         return this.items.indexOf(this.selectedItem);
+    };
+    ObjectComponent.prototype.loadItems = function (res) {
+        this.items = res[0];
+    };
+    ObjectComponent.prototype.setItem = function (item) {
+        return item;
     };
     ObjectComponent = __decorate([
         core_1.Component({

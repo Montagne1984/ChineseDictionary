@@ -12,6 +12,7 @@
 
     <environment names="Development">
         <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css"/>
+        <link rel="stylesheet" type="text/css" href="~/lib/font-awesome/css/font-awesome.css" />
         <link rel="stylesheet" type="text/css" href="~/lib/primeui/themes/delta/theme.css" />
         <link rel="stylesheet" type="text/css" href="~/lib/primeui/primeui-ng-all.css" />
         <link rel="stylesheet" href="~/css/site.css" />
@@ -20,6 +21,7 @@
         <link rel="stylesheet" href="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.6/css/bootstrap.min.css"
               asp-fallback-href="~/lib/bootstrap/dist/css/bootstrap.min.css"
               asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute" />
+        <link rel="stylesheet" type="text/css" href="~/lib/font-awesome/css/font-awesome.css" />
         <link rel="stylesheet" type="text/css" href="~/lib/primeui/themes/delta/theme.css" />
         <link rel="stylesheet" type="text/css" href="~/lib/primeui/primeui-ng-all.css" />
         <link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />
@@ -41,7 +43,7 @@
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li><a asp-controller="Home" asp-action="Index">@Localizer["首页"]</a></li>
-                    <li><a asp-controller="Home" asp-action="About">@Localizer["关于我们"]</a></li>
+                    <li><a asp-controller="Home" asp-action="About">@Localizer["关于吴典"]</a></li>
                     <li><a asp-controller="Home" asp-action="Contact">@Localizer["联系我们"]</a></li>
                 </ul>
                 @await Html.PartialAsync("_LoginPartial")
@@ -59,7 +61,6 @@
     <environment names="Development">
         <script src="~/lib/jquery/dist/jquery.js"></script>
         <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
-        <script src="https://use.fontawesome.com/02b196efa6.js"></script>
         
         <!-- 1. Load libraries -->
         <!-- Polyfill(s) for older browsers -->

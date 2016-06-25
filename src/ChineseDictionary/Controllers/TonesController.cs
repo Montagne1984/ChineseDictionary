@@ -107,6 +107,10 @@ namespace ChineseDictionary.Controllers
                     throw;
                 }
             }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
 
             return CreatedAtAction("GetTone", new { id = tone.Id }, tone);
         }

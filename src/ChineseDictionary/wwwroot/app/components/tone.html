@@ -6,7 +6,9 @@
     </div>
     <p-dataTable [value]="items" selectionMode="single" [(selection)]="selectedItem" (onRowSelect)="onRowSelect($event)" [rows]="10" [paginator]="true" [rowsPerPageOptions]="[5,10,20]" [responsive]="true" [globalFilter]="gb" resizableColumns="true">
         <header>{{ title | translate:lang }}</header>
+        <p-column field="area.name" header="{{ 'AREA'| translate:lang }}" [sortable]="true" [filter]="true" filterMatchMode="contains"></p-column>
         <p-column field="value" header="{{ 'VALUE'| translate:lang }}" [sortable]="true" [filter]="true" filterMatchMode="contains"></p-column>
+        <p-column field="toneType.name" header="{{ 'TONETYPE'| translate:lang }}" [sortable]="true" [filter]="true" filterMatchMode="contains"></p-column>
     </p-dataTable>
 
     <p-dialog header="{{ 'ITEMDETAILS'| translate:lang }}" [(visible)]="displayDialog" [responsive]="true" showEffect="fade" [modal]="true">
@@ -24,7 +26,7 @@
                     <label for="value">{{ "AREA" | translate:lang }}</label>
                 </div>
                 <div class="ui-grid-col-8">
-                    <p-dropdown [options]="areas" [(ngModel)]="item.area"></p-dropdown>
+                    <p-dropdown [options]="areas" [(ngModel)]="item.areaId"></p-dropdown>
                 </div>
             </div>
             <div class="ui-grid-row">
@@ -32,7 +34,7 @@
                     <label for="value">{{ "TONETYPE" | translate:lang }}</label>
                 </div>
                 <div class="ui-grid-col-8">
-                    <p-dropdown [options]="toneTypes" [(ngModel)]="item.toneType"></p-dropdown>
+                    <p-dropdown [options]="toneTypes" [(ngModel)]="item.toneTypeId"></p-dropdown>
                 </div>
             </div>
         </div>

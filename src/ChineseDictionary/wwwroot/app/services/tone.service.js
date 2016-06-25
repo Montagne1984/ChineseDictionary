@@ -25,7 +25,7 @@ var ToneService = (function (_super) {
     }
     ToneService.prototype.extractArray = function (res) {
         var items = [];
-        res.json().forEach(function (item) { return items.push(new tone_1.Tone(item.Id, item.Value, item.Area, item.ToneType)); });
+        res.json().forEach(function (item) { return items.push(new tone_1.Tone(item.Id, item.Value, item.AreaId, item.ToneTypeId)); });
         return items;
     };
     ToneService.prototype.extractData = function (res) {
@@ -33,7 +33,7 @@ var ToneService = (function (_super) {
             return null;
         }
         var item = res.json();
-        return new tone_1.Tone(item.Id, item.Value);
+        return new tone_1.Tone(item.Id, item.Value, item.AreaId, item.ToneTypeId);
     };
     ToneService = __decorate([
         core_1.Injectable(), 

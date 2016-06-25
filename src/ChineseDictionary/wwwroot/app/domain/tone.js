@@ -1,10 +1,10 @@
 "use strict";
 var Tone = (function () {
-    function Tone(id, value, area, toneType) {
+    function Tone(id, value, areaId, toneTypeId) {
         this.id = id;
         this.value = value;
-        this.area = area;
-        this.toneType = toneType;
+        this.areaId = areaId;
+        this.toneTypeId = toneTypeId;
     }
     return Tone;
 }());
