@@ -23,17 +23,8 @@ var ToneService = (function (_super) {
         _super.call(this, http);
         this.url = 'api/tones/'; // URL to web api
     }
-    ToneService.prototype.extractArray = function (res) {
-        var items = [];
-        res.json().forEach(function (item) { return items.push(new tone_1.Tone(item.Id, item.Value, item.AreaId, item.ToneTypeId)); });
-        return items;
-    };
-    ToneService.prototype.extractData = function (res) {
-        if (res.status === 204) {
-            return null;
-        }
-        var item = res.json();
-        return new tone_1.Tone(item.Id, item.Value, item.AreaId, item.ToneTypeId);
+    ToneService.prototype.new = function () {
+        return new tone_1.Tone();
     };
     ToneService = __decorate([
         core_1.Injectable(), 

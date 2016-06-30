@@ -23,17 +23,8 @@ var AreaService = (function (_super) {
         _super.call(this, http);
         this.url = 'api/areas/'; // URL to web api
     }
-    AreaService.prototype.extractArray = function (res) {
-        var items = [];
-        res.json().forEach(function (item) { return items.push(new area_1.Area(item.Id, item.Name)); });
-        return items;
-    };
-    AreaService.prototype.extractData = function (res) {
-        if (res.status === 204) {
-            return null;
-        }
-        var item = res.json();
-        return new area_1.Area(item.Id, item.Name);
+    AreaService.prototype.new = function () {
+        return new area_1.Area();
     };
     AreaService = __decorate([
         core_1.Injectable(), 

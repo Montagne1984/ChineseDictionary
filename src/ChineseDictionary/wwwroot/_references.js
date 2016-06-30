@@ -13,6 +13,7 @@
 /// <reference path="app/components/vowel.component.js" />
 /// <reference path="app/domain/area.js" />
 /// <reference path="app/domain/consonant.js" />
+/// <reference path="app/domain/extractable.js" />
 /// <reference path="app/domain/ipaconsonant.js" />
 /// <reference path="app/domain/ipaphoneme.js" />
 /// <reference path="app/domain/ipavowel.js" />

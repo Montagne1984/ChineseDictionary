@@ -13,5 +13,6 @@ namespace ChineseDictionary.Models.EntityModels
         public int PronunciationId { get; set; }
         [Required]
         public Pronunciation Pronunciation { get; set; }
+        public string Description { get; set; }
     }
 }

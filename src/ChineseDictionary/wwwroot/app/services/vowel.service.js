@@ -23,17 +23,8 @@ var VowelService = (function (_super) {
         _super.call(this, http);
         this.url = 'api/vowels/'; // URL to web api
     }
-    VowelService.prototype.extractArray = function (res) {
-        var items = [];
-        res.json().forEach(function (item) { return items.push(new vowel_1.Vowel(item.Id, item.Symbol)); });
-        return items;
-    };
-    VowelService.prototype.extractData = function (res) {
-        if (res.status === 204) {
-            return null;
-        }
-        var item = res.json();
-        return new vowel_1.Vowel(item.Id, item.Symbol);
+    VowelService.prototype.new = function () {
+        return new vowel_1.Vowel();
     };
     VowelService = __decorate([
         core_1.Injectable(), 

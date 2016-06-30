@@ -4,9 +4,17 @@
         <input #gb type="search" pInputText style="float: left" placeholder="{{ 'GLOBALFILTER'| translate:lang }}" />
         <button type="button" pButton icon="fa-plus" style="float: right" (click)="showDialogToAdd()" label="{{ 'ADD'| translate:lang }}"></button>
     </div>
-    <p-dataTable [value]="items" selectionMode="single" [(selection)]="selectedItem" (onRowSelect)="onRowSelect($event)" [rows]="10" [paginator]="true" [rowsPerPageOptions]="[5,10,20]" [responsive]="true" [globalFilter]="gb" resizableColumns="true">
+    <p-dataTable [value]="items" selectionMode="single" [(selection)]="selectedItem" (onRowSelect)="onRowSelect($event)" [rows]="10" [paginator]="true" [rowsPerPageOptions]="[5,10,20]" [responsive]="true" [globalFilter]="gb" resizableColumns="true" expandableRows="true">
         <header>{{ title | translate:lang }}</header>
-        <p-column field="name" header="{{ 'NAME'| translate:lang }}" [sortable]="true" [filter]="true" filterMatchMode="contains"></p-column>
+        <p-column expander="true" styleClass="col-icon"></p-column>
+        <p-column field="name" header="{{ 'TONE'| translate:lang }}" [sortable]="true" [filter]="true" filterMatchMode="contains"></p-column>
+        <template let-item>
+            <p-dataTable [value]="item.tones" selectionMode="single" [(selection)]="selectedItem" (onRowSelect)="onRowSelect($event)" [rows]="10" [paginator]="true" [rowsPerPageOptions]="[5,10,20]" [responsive]="true" [globalFilter]="gb" resizableColumns="true" expandableRows="true">
+                <header>{{ 'TONE' | translate:lang }}</header>
+                <p-column field="toneId" header="{{ 'TONE'| translate:lang }}" [sortable]="true" [filter]="true" filterMatchMode="contains"></p-column>
+                <p-column field="ipaConsonantId" header="{{ 'TONETYPE'| translate:lang }}" [sortable]="true" [filter]="true" filterMatchMode="contains"></p-column>
+            </p-dataTable>
+        </template>
     </p-dataTable>
 
     <p-dialog header="{{ 'ITEMDETAILS'| translate:lang }}" [(visible)]="displayDialog" [responsive]="true" showEffect="fade" [modal]="true">

@@ -1,8 +1,9 @@
 ﻿import { Observable } from 'rxjs/Observable';
 import { Headers, Http, Response, RequestOptions } from '@angular/http';
 import '../rxjs-operators';
+import {IExtractable} from '../domain/extractable'
 
-export abstract class ObjectService<T> {
+export abstract class ObjectService<T extends IExtractable> {
     headers: Headers = new Headers({ 'Content-Type': 'application/json' });
     options: RequestOptions = new RequestOptions({ headers: this.headers });
     protected url: string;  // URL to web api
@@ -39,9 +40,18 @@ export abstract class ObjectService<T> {
             .catch(this.handleError);
     }
 
-    protected abstract extractArray(res: Response): T[];
+    protected extractArray(res: Response): T[] {
+        let items = [];
+        res.json().forEach(item => items.push(this.new().extract(item)));
+        return items;
+    }
 
-    protected abstract extractData(res: Response): T;
+    protected extractData(res: Response): T {
+        if (res.status === 204) {
+            return null;
+        }
+        return this.new().extract(res.json());
+    }
     
     protected handleError(error: any) {
         // In a real world app, we might use a remote logging infrastructure
@@ -51,4 +61,6 @@ export abstract class ObjectService<T> {
         console.error(errMsg); // log to console instead
         return Observable.throw(errMsg);
     }
+
+    abstract new(): T;
 }

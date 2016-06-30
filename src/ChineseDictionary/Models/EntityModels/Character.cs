@@ -9,7 +9,6 @@ namespace ChineseDictionary.Models.EntityModels
         [Required, MaxLength(10)]
         public string Symbol { get; set; }
         public string SimplifiedSymbol { get; set; }
-        public string Description { get; set; }
         public List<CharacterPronunciation> CharacterPronunciations { get; set; }
     }
 }

@@ -11,17 +11,7 @@ export class IPAConsonantService extends ObjectService<IPAConsonant> {
         super(http);
     }
 
-    protected extractArray(res: Response): IPAConsonant[] {
-        let items = [];
-        res.json().forEach(item => items.push(new IPAConsonant(item.Id, item.Symbol)));
-        return items;
-    }
-
-    protected extractData(res: Response): IPAConsonant {
-        if (res.status === 204) {
-            return null;
-        }
-        let item = res.json();
-        return new IPAConsonant(item.Id, item.Symbol);
+    new(): IPAConsonant {
+        return new IPAConsonant();
     }
 }

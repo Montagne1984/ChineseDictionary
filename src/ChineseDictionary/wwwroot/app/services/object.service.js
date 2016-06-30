@@ -31,6 +31,18 @@ var ObjectService = (function () {
             .map(this.extractData)
             .catch(this.handleError);
     };
+    ObjectService.prototype.extractArray = function (res) {
+        var _this = this;
+        var items = [];
+        res.json().forEach(function (item) { return items.push(_this.new().extract(item)); });
+        return items;
+    };
+    ObjectService.prototype.extractData = function (res) {
+        if (res.status === 204) {
+            return null;
+        }
+        return this.new().extract(res.json());
+    };
     ObjectService.prototype.handleError = function (error) {
         // In a real world app, we might use a remote logging infrastructure
         // We'd also dig deeper into the error to get a better message

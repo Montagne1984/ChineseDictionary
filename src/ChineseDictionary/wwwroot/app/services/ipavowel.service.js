@@ -23,17 +23,8 @@ var IPAVowelService = (function (_super) {
         _super.call(this, http);
         this.url = 'api/ipavowels/'; // URL to web api
     }
-    IPAVowelService.prototype.extractArray = function (res) {
-        var items = [];
-        res.json().forEach(function (item) { return items.push(new ipavowel_1.IPAVowel(item.Id, item.Symbol)); });
-        return items;
-    };
-    IPAVowelService.prototype.extractData = function (res) {
-        if (res.status === 204) {
-            return null;
-        }
-        var item = res.json();
-        return new ipavowel_1.IPAVowel(item.Id, item.Symbol);
+    IPAVowelService.prototype.new = function () {
+        return new ipavowel_1.IPAVowel();
     };
     IPAVowelService = __decorate([
         core_1.Injectable(), 

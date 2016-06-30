@@ -23,17 +23,8 @@ var ConsonantService = (function (_super) {
         _super.call(this, http);
         this.url = 'api/consonants/'; // URL to web api
     }
-    ConsonantService.prototype.extractArray = function (res) {
-        var items = [];
-        res.json().forEach(function (item) { return items.push(new consonant_1.Consonant(item.Id, item.Symbol)); });
-        return items;
-    };
-    ConsonantService.prototype.extractData = function (res) {
-        if (res.status === 204) {
-            return null;
-        }
-        var item = res.json();
-        return new consonant_1.Consonant(item.Id, item.Symbol);
+    ConsonantService.prototype.new = function () {
+        return new consonant_1.Consonant();
     };
     ConsonantService = __decorate([
         core_1.Injectable(), 

@@ -23,17 +23,8 @@ var IPAConsonantService = (function (_super) {
         _super.call(this, http);
         this.url = 'api/ipaconsonants/'; // URL to web api
     }
-    IPAConsonantService.prototype.extractArray = function (res) {
-        var items = [];
-        res.json().forEach(function (item) { return items.push(new ipaconsonant_1.IPAConsonant(item.Id, item.Symbol)); });
-        return items;
-    };
-    IPAConsonantService.prototype.extractData = function (res) {
-        if (res.status === 204) {
-            return null;
-        }
-        var item = res.json();
-        return new ipaconsonant_1.IPAConsonant(item.Id, item.Symbol);
+    IPAConsonantService.prototype.new = function () {
+        return new ipaconsonant_1.IPAConsonant();
     };
     IPAConsonantService = __decorate([
         core_1.Injectable(), 

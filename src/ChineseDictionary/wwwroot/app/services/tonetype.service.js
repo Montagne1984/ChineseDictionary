@@ -23,17 +23,8 @@ var ToneTypeService = (function (_super) {
         _super.call(this, http);
         this.url = 'api/tonetypes/'; // URL to web api
     }
-    ToneTypeService.prototype.extractArray = function (res) {
-        var items = [];
-        res.json().forEach(function (item) { return items.push(new tonetype_1.ToneType(item.Id, item.Name)); });
-        return items;
-    };
-    ToneTypeService.prototype.extractData = function (res) {
-        if (res.status === 204) {
-            return null;
-        }
-        var item = res.json();
-        return new tonetype_1.ToneType(item.Id, item.Name);
+    ToneTypeService.prototype.new = function () {
+        return new tonetype_1.ToneType();
     };
     ToneTypeService = __decorate([
         core_1.Injectable(), 

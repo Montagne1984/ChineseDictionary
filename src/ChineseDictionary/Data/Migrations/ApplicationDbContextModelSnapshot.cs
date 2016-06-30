@@ -86,8 +86,6 @@ namespace ChineseDictionary.Data.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<string>("Description");
-
                     b.Property<string>("SimplifiedSymbol");
 
                     b.Property<string>("Symbol")
@@ -108,6 +106,8 @@ namespace ChineseDictionary.Data.Migrations
                         .ValueGeneratedOnAdd();
 
                     b.Property<int>("CharacterId");
+
+                    b.Property<string>("Description");
 
                     b.Property<int>("PronunciationId");
 
@@ -269,15 +269,11 @@ namespace ChineseDictionary.Data.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<int?>("AreaId");
-
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasAnnotation("MaxLength", 10);
 
                     b.HasKey("Id");
-
-                    b.HasIndex("AreaId");
 
                     b.HasIndex("Name")
                         .IsUnique();
@@ -613,13 +609,6 @@ namespace ChineseDictionary.Data.Migrations
                     b.HasOne("ChineseDictionary.Models.EntityModels.ToneType")
                         .WithMany()
                         .HasForeignKey("ToneTypeId");
-                });
-
-            modelBuilder.Entity("ChineseDictionary.Models.EntityModels.ToneType", b =>
-                {
-                    b.HasOne("ChineseDictionary.Models.EntityModels.Area")
-                        .WithMany()
-                        .HasForeignKey("AreaId");
                 });
 
             modelBuilder.Entity("ChineseDictionary.Models.EntityModels.VowelMapping", b =>

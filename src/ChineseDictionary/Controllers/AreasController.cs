@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using ChineseDictionary.Data;
 using ChineseDictionary.Models.EntityModels;
+using Microsoft.EntityFrameworkCore.Query;
 
 namespace ChineseDictionary.Controllers
 {
@@ -23,9 +24,22 @@ namespace ChineseDictionary.Controllers
 
         // GET: api/Areas
         [HttpGet]
-        public IEnumerable<Area> GetAreas()
+        public IEnumerable<Area> GetAreas([FromQuery] bool includeConsonantMappings, [FromQuery] bool includeVowelMappings, [FromQuery] bool includeTones)
         {
-            return _context.Areas;
+            IQueryable<Area> areas = _context.Areas;
+            if (includeConsonantMappings)
+            {
+                areas = areas.Include(a => a.ConsonantMappings.Select(c => new {c.Consonant, c.IPAConsonant}));
+            }
+            if (includeVowelMappings)
+            {
+                areas = areas.Include(a => a.VowelMappings.Select(v => new {v.Vowel, v.IPAVowel}));
+            }
+            if (includeTones)
+            {
+                areas = areas.Include(a => a.Tones.Select(t => t.ToneType));
+            }
+            return areas;
         }
 
         // GET: api/Areas/5

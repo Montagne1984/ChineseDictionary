@@ -4,6 +4,7 @@ import "rxjs/Rx";
 import {Button, Dialog, DataTable, Column, Header, Footer, InputText} from "primeng/primeng";
 import {Locale, LocaleService, LocalizationService, TranslatePipe} from "angular2localization/angular2localization";
 import {ObjectService} from "../services/object.service"
+import {IExtractable} from "../domain/extractable"
 
 @Component({
     providers: [
@@ -13,7 +14,7 @@ import {ObjectService} from "../services/object.service"
     pipes: [TranslatePipe]
 })
 
-export abstract class ObjectComponent<T> extends Locale implements OnInit {
+export abstract class ObjectComponent<T extends IExtractable> extends Locale implements OnInit {
 
     displayDialog: boolean;
 

@@ -28,7 +28,6 @@ namespace ChineseDictionary.Data.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    Description = table.Column<string>(nullable: true),
                     SimplifiedSymbol = table.Column<string>(nullable: true),
                     Symbol = table.Column<string>(nullable: false)
                 },
@@ -90,6 +89,19 @@ namespace ChineseDictionary.Data.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "ToneTypes",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    Name = table.Column<string>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_ToneTypes", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Vowels",
                 columns: table => new
                 {
@@ -113,26 +125,6 @@ namespace ChineseDictionary.Data.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Words", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "ToneTypes",
-                columns: table => new
-                {
-                    Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    AreaId = table.Column<int>(nullable: true),
-                    Name = table.Column<string>(nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_ToneTypes", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_ToneTypes_Areas_AreaId",
-                        column: x => x.AreaId,
-                        principalTable: "Areas",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -166,6 +158,33 @@ namespace ChineseDictionary.Data.Migrations
                         principalTable: "IPAConsonants",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Tones",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    AreaId = table.Column<int>(nullable: false),
+                    ToneTypeId = table.Column<int>(nullable: false),
+                    Value = table.Column<string>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Tones", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Tones_Areas_AreaId",
+                        column: x => x.AreaId,
+                        principalTable: "Areas",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_Tones_ToneTypes_ToneTypeId",
+                        column: x => x.ToneTypeId,
+                        principalTable: "ToneTypes",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -274,28 +293,34 @@ namespace ChineseDictionary.Data.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Tones",
+                name: "Pronunciations",
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    AreaId = table.Column<int>(nullable: false),
-                    ToneTypeId = table.Column<int>(nullable: false),
-                    Value = table.Column<string>(nullable: false)
+                    ConsonantId = table.Column<int>(nullable: false),
+                    ToneId = table.Column<int>(nullable: false),
+                    VowelId = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Tones", x => x.Id);
+                    table.PrimaryKey("PK_Pronunciations", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Tones_Areas_AreaId",
-                        column: x => x.AreaId,
-                        principalTable: "Areas",
+                        name: "FK_Pronunciations_Consonants_ConsonantId",
+                        column: x => x.ConsonantId,
+                        principalTable: "Consonants",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
-                        name: "FK_Tones_ToneTypes_ToneTypeId",
-                        column: x => x.ToneTypeId,
-                        principalTable: "ToneTypes",
+                        name: "FK_Pronunciations_Tones_ToneId",
+                        column: x => x.ToneId,
+                        principalTable: "Tones",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_Pronunciations_Vowels_VowelId",
+                        column: x => x.VowelId,
+                        principalTable: "Vowels",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                 });
@@ -347,45 +372,13 @@ namespace ChineseDictionary.Data.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Pronunciations",
-                columns: table => new
-                {
-                    Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    ConsonantId = table.Column<int>(nullable: false),
-                    ToneId = table.Column<int>(nullable: false),
-                    VowelId = table.Column<int>(nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Pronunciations", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Pronunciations_Consonants_ConsonantId",
-                        column: x => x.ConsonantId,
-                        principalTable: "Consonants",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_Pronunciations_Tones_ToneId",
-                        column: x => x.ToneId,
-                        principalTable: "Tones",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_Pronunciations_Vowels_VowelId",
-                        column: x => x.VowelId,
-                        principalTable: "Vowels",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "CharacterPronunciation",
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     CharacterId = table.Column<int>(nullable: false),
+                    Description = table.Column<string>(nullable: true),
                     PronunciationId = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
@@ -543,11 +536,6 @@ namespace ChineseDictionary.Data.Migrations
                 unique: true);
 
             migrationBuilder.CreateIndex(
-                name: "IX_ToneTypes_AreaId",
-                table: "ToneTypes",
-                column: "AreaId");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_ToneTypes_Name",
                 table: "ToneTypes",
                 column: "Name",
@@ -694,10 +682,10 @@ namespace ChineseDictionary.Data.Migrations
                 name: "Vowels");
 
             migrationBuilder.DropTable(
-                name: "ToneTypes");
+                name: "Areas");
 
             migrationBuilder.DropTable(
-                name: "Areas");
+                name: "ToneTypes");
         }
     }
 }
